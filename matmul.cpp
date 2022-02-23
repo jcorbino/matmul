@@ -1,4 +1,4 @@
-// g++ -Wall -O3 -fopenmp matmul.cpp -o matmul -lcblas
+// g++ -Wall -O3 -fopenmp matmul.cpp -o matmul -lblas
 
 #include <iostream>
 #include <random>
