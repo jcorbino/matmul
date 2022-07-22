@@ -1,4 +1,5 @@
 // g++ -Wall -O3 -fopenmp matmul.cpp -o matmul -lblas
+// ./matmul <ROWS_A> <COLS_B> <COLS_A>
 
 #include <iostream>
 #include <random>
