@@ -43,8 +43,8 @@ int main(int argc, char *argv[])
         A[k] = dist(rnd);
 
     // Fill B (and B^T) with random numbers
-    for (uint k = 0; k < o * n; ++k)
-    { // Manually collapsed loop
+    for (uint k = 0; k < o * n; ++k) // Manually collapsed loop
+    {
         uint i = k / n, j = k % n;
         B[k] = BT[j * o + i] = dist(rnd);
     }
