@@ -29,6 +29,7 @@ int main(int argc, char *argv[])
 
     // If you know the dimensions at compile time:
     // double (*A)[COLS] = malloc(sizeof *A * ROWS);
+    // Use A[i][j]...
     // But in this case we don't, and VLAs are not part of the C++ standard
     double *A = new double[m * o];
     double *B = new double[o * n];
