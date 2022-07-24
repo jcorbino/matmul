@@ -5,7 +5,7 @@
 #include <random>
 #include <chrono>
 
-#define TILE_WIDTH 32 // 32x32 = 1024 CUDA threads per block
+#define TILE_WIDTH 16 // 16x16 = 256 CUDA threads per block
 
 using namespace std;
 
