@@ -1,4 +1,4 @@
-// nvcc --compiler-options -Wall matlmul.cu -o matmul
+// nvcc --compiler-options -Wall matmul.cu -o matmul
 // ./matmul <ROWS_A> <COLS_B> <COLS_A>
 
 #include <iostream>
@@ -70,7 +70,10 @@ int main(int argc, char *argv[])
     uint mem_size_A, mem_size_B, mem_size_C;
 
     if (argc != 4)
+    {
+        cerr << "usage: ./matmul <ROWS_A> <COLS_B> <COLS_A>\n";
         return 1;
+    }
 
     // Random numbers
     mt19937_64 rnd(random_device{}());
