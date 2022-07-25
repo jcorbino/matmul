@@ -10,9 +10,11 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-
     if (argc != 4)
+    {
+        cerr << "usage: ./matmul <ROWS_A> <COLS_B> <COLS_A>\n";
         return 1;
+    }
 
     // Aesthetics
     cout.precision(4);
