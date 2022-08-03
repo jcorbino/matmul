@@ -84,23 +84,23 @@ int main(int argc, char *argv[])
     cout << '\n';
 #endif
 
-    auto start = chrono::high_resolution_clock::now();
+    auto start = chrono::steady_clock::now();
     // C-Wrapper of BLAS for C := alpha*op(A)*op(B) + beta*C
     //                                                             alpha   lda   ldb beta
     cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, m, n, o, 1.0, A, o, B, n, 0.0, C1, n);
-    auto stop = chrono::high_resolution_clock::now();
+    auto stop = chrono::steady_clock::now();
     cout << "Time with BLAS: " << chrono::duration_cast<chrono::milliseconds>(stop - start).count() << " ms\n";
 
-    start = chrono::high_resolution_clock::now();
+    start = chrono::steady_clock::now();
 #pragma omp parallel for
     for (uint i = 0; i < m; ++i)
         for (uint j = 0; j < n; ++j)
             for (uint k = 0; k < o; ++k)
                 C2[i * n + j] += A[i * o + k] * B[k * n + j];
-    stop = chrono::high_resolution_clock::now();
+    stop = chrono::steady_clock::now();
     cout << "Time with ijk: " << chrono::duration_cast<chrono::milliseconds>(stop - start).count() << " ms\n";
 
-    start = chrono::high_resolution_clock::now();
+    start = chrono::steady_clock::now();
 #pragma omp parallel for
     for (uint i = 0; i < m; ++i)
         for (uint j = 0; j < n; ++j)
@@ -110,16 +110,16 @@ int main(int argc, char *argv[])
                 sum += A[i * o + k] * BT[j * o + k];
             C3[i * n + j] = sum;
         }
-    stop = chrono::high_resolution_clock::now();
+    stop = chrono::steady_clock::now();
     cout << "Time with ijk (B^T): " << chrono::duration_cast<chrono::milliseconds>(stop - start).count() << " ms\n";
 
-    start = chrono::high_resolution_clock::now();
+    start = chrono::steady_clock::now();
 #pragma omp parallel for
     for (uint i = 0; i < m; ++i)
         for (uint k = 0; k < o; ++k)
             for (uint j = 0; j < n; ++j)
                 C4[i * n + j] += A[i * o + k] * B[k * n + j];
-    stop = chrono::high_resolution_clock::now();
+    stop = chrono::steady_clock::now();
     cout << "Time with ikj: " << chrono::duration_cast<chrono::milliseconds>(stop - start).count() << " ms\n";
 
 #ifdef DEBUG
