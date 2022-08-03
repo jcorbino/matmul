@@ -106,7 +106,7 @@ int main(int argc, char *argv[])
     for (uint k = 0; k < o * n; ++k)
         h_B[k] = dist(rnd);
 
-    auto start = chrono::high_resolution_clock::now();
+    auto start = chrono::steady_clock::now();
 
     checkCudaErrors(cudaMemcpy(d_A, h_A, mem_size_A, cudaMemcpyHostToDevice));
     checkCudaErrors(cudaMemcpy(d_B, h_B, mem_size_B, cudaMemcpyHostToDevice));
@@ -120,7 +120,7 @@ int main(int argc, char *argv[])
 
     checkCudaErrors(cudaMemcpy(h_C, d_C, mem_size_C, cudaMemcpyDeviceToHost));
 
-    auto stop = chrono::high_resolution_clock::now();
+    auto stop = chrono::steady_clock::now();
     cout << "Elapsed time (including data transfers): " << chrono::duration_cast<chrono::milliseconds>(stop - start).count() << " ms\n";
 
 // Check result!
