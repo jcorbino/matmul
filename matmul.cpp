@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    // Aesthetics
+    // Output formatting
     cout.precision(4);
     cout.setf(ios::fixed);
 
